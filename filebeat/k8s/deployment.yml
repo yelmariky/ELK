@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: filebeat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: filebeats
+  template:
+    metadata:
+      labels:
+        app: filebeats
+    spec:
+      containers:
+      - name: filebeats
+        image: filebeats-younes:1.0
+        volumeMounts:
+        - name: data
+          mountPath: /usr/share/filebeats/data
+        - mountPath: /usr/share/filebeats/logs
+          name: logs
+      volumes:
+      - name: data
+        emptyDir: {}
+      - name: logs
+        persistentVolumeClaim:
+            claimName: filebeats-pv-claim
+
+

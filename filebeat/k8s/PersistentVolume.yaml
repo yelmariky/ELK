@@ -1,0 +1,15 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: filebeats-claim-0
+  labels:
+    type: local
+    app: filebeats
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 5Mi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: /Users/younes/logs/filebeats
