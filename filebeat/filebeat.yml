@@ -2,7 +2,12 @@ filebeat.inputs:
   - type: log
     enabled: true
     paths:
-      - /usr/share/filebeats/logs/*.log
+      - /applis/logs/demoELK/*.log
+    multiline.pattern: '^\[d{2}/\d{2}/\d{2}'
+    multiline.negate: true
+    multiline.match: after
+    fields:
+      category: api-messages
 
 output.logstash:
-  hosts: ["logstash-service:5044"]
+  hosts: ["logstash-service.default:5044"]

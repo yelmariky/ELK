@@ -13,18 +13,16 @@ spec:
         app: filebeats
     spec:
       containers:
-      - name: filebeats
-        image: filebeats-younes:1.0
+      - name: demo-elk
+        image: demo-elk:2.0
         volumeMounts:
-        - name: data
-          mountPath: /usr/share/filebeats/data
-        - mountPath: /usr/share/filebeats/logs
+        - mountPath: /applis
+          name: logs
+      - name: filebeats
+        image: filebeats-younes:2.1
+        volumeMounts:
+        - mountPath: /applis
           name: logs
       volumes:
-      - name: data
-        emptyDir: {}
       - name: logs
-        persistentVolumeClaim:
-            claimName: filebeats-pv-claim
-
-
+        emptyDir: {}
