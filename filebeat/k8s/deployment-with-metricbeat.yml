@@ -14,15 +14,17 @@ spec:
     spec:
       containers:
       - name: demo-elk
-        image: demo-elk:2.3
+        image: demo-elk:2.1
         volumeMounts:
         - mountPath: /applis
           name: logs
       - name: filebeats
-        image: filebeats-younes:2.2
+        image: filebeats-younes:2.1
         volumeMounts:
         - mountPath: /applis
           name: logs
+      - name: metricbeats
+        image: metricbeat-younes:1.0 
       volumes:
       - name: logs
         emptyDir: {}

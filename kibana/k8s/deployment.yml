@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kibana-deployment
+spec:
+  replicas: 1 # Définissez le nombre de répliques souhaitées
+  selector:
+    matchLabels:
+      app: kibana
+  template:
+    metadata:
+      labels:
+        app: kibana
+    spec:
+      containers:
+        - name: kibana-container
+          image: kibana-younes:1.1
+          ports:
+          - containerPort: 5601
+            name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kibana-service
+spec:
+  selector:
+    app: kibana  # Correspond au label utilisé dans le déploiement
+  ports:
+    - protocol: TCP
+      port: 5601  # Port que vous souhaitez exposer
+      targetPort: 5601  

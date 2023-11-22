@@ -1,0 +1,13 @@
+metricbeat.modules:
+- module: http
+  metricsets: ["json"]
+  enabled: true
+  period: 10s
+  hosts: ["http://localhost:8080/demo-elk/actuator/metrics"] # Remplacez par l'URL de votre endpoint Actuator
+  namespace: "actuator_metrics"
+  processors:
+    - decode_json_fields:
+        fields: ["response.body"]
+        target: "actuator_metrics_data"
+output.logstash:
+  hosts: ["logstash-service.default:5044"] # Adresse de Logstash

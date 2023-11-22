@@ -3,7 +3,8 @@ filebeat.inputs:
     enabled: true
     paths:
       - /applis/logs/demoELK/*.log
-    multiline.pattern: '^\[d{2}/\d{2}/\d{2}'
+    multiline.type: pattern
+    multiline.pattern: '^\[[0-9]{2}/[0-9]{2}/[0-9]{2}'
     multiline.negate: true
     multiline.match: after
     fields:
