@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: logstash-container
-          image: logstash-younes:2.8
+          image: logstash-younes:2.10
           ports:
             - containerPort: 5044
 ---

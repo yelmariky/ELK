@@ -2,7 +2,7 @@ metricbeat.modules:
 - module: http
   metricsets: ["json"]
   enabled: true
-  period: 10s
+  period: 30s
   hosts: ["http://localhost:8080/demo-elk/actuator/metrics"] # Remplacez par l'URL de votre endpoint Actuator
   namespace: "actuator_metrics"
   processors:
